@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Chat widget</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <script src="https://kit.fontawesome.com/6e6f5f3dae.js" crossorigin="anonymous"></script>
+    <style>
+    .chat-btn{
+        border-radius: 34px 8px 34px 34px;
+        background: #001b33 !important;
+        bottom: 6px;
+        box-shadow: 0 5px 4px 0 rgba(0,0,0,.26);
+        color: #fff;
+        cursor: pointer;
+        display: table;
+        height: 30px;
+        width:50px;
+        padding: 7px 10px 10px;
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        z-index: 99999995 !important;
+    }
+    .chat-icon{
+        padding:10px 5px 0px 5px;
+        display: table-cell;
+        text-align: center;
+        vertical-align: middle;
+        font-size: 20px;
+    }
+    .chat-icon-2{
+        cursor: pointer;
+    }
+    .chat-widget{
+        width:400px;
+        min-height: 50% !important;
+        height:40% !important; 
+        background: #001b33 !important;
+        border-radius:10px;
+        bottom: 6px;
+        box-shadow: 0px 4px 4px 2px rgba(0,0,0,.36);
+        color: #fff;
+        display: table;
+        position: fixed;
+        right: 10px;
+        bottom: 10px;
+        z-index: 9999999;
+    }
+    .chat-widget-top{
+        display: table-row;
+        /* height: 25%; */
+        border-radius: 10px;
+    }
+    .chat-widget-bottom{
+        display: table-row;
+        height:100%;
+    }
+    .bottom-name{
+        border-radius:0px 0px 10px 10px;
+    }
+    .chat-widget-bottom > div{
+        background: white;
+        border-radius: 0px 0px 10px 10px;
+    }
+    .widget-close-icon{
+        cursor: pointer;
+    }
+    .first-card,.second-card,.third-card,.fourth-card{
+        height:45%;
+        cursor: pointer;
+    }
+    .action-section{
+        display: inline;
+        width: 100%;
+        border: 1px solid red;
+    }
+    #second-page,#chat-page,#subscriber-page{
+        display: none;
+    }
+    #head-text{
+        font-size: 25px;
+        /* margin-bottom: ; */
+    }
+    #head-caption{
+        letter-spacing: 1px;
+        color:rgb(255,255,255,0.8)
+    }
+    .d-hotline{
+        display:none !important;
+    }
+    @media(max-width:600px){
+        .chat-widget{
+            border-radius: unset;
+            right: 0px;
+            bottom: 0px;
+            width:100vw !important;
+            height: 100vh !important;
+        }
+    }
+    </style>
+
+</head>
+<body class="bg-light">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+    <div class="chat-btn mt-4" id="chat-btn">
+        <div class="chat-icon">
+                <i class="material-icons" style="font-size:30px">chat</i>
+        </div>
+    </div>
+
+    <div class="container-flex">
+        <div class="position-fixed chat-widget pa-sm-5 " id="chat-widget">
+                <div class="chat-widget-top">
+                    <div class="row justify-content-between align-item-start">
+                        <div class="chat-icon-2 float-left m-3 ml-4" id="chat-icon-2" style="font-weight:100;">
+                                <i class="material-icons" style="font-size:25px">chat</i>
+                        </div>
+                        <div class="widget-close-icon float-right mx-3 mr-4 text-muted" id="close-btn">
+                            <span aria-hidden="true"  style="font-size: 30px;">&times;</span>
+                        </div>
+                    </div>
+                    <div class="row align-item-end mx-2">
+                        <div class="font-weight-bolder mb-0 mx-2 w-100" id="head-text">
+                            How can we help?
+                        </div>
+                        <div class="mx-2 my-1 text-muted" id="head-caption" >
+                            We help you with questions.
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-widget-bottom p-3 bg-light text-dark">
+                    <div id="first-page">
+                        <div class="first-card card m-3 shadow" id="first-card">
+                            <div class="row no-gutters">
+                                <div class="col-3 ">
+                                    <div class="chat-icon-card-2 py-5 pl-4" >
+                                        <i class="fas fa-user-friends" style="font-size: 50px;color:#001b33"></i>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="card-body">
+                                    <div class="font-weight-bolder" style="color:#001b33;font-size:14px ;">BOOK A FREE DESIGN APPOINTMENT</div>
+                                    <p class="text-muted" style="font-size:13px;">Select a slot that suits you or have a store calling you.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="second-card card m-3 shadow" id="second-card">
+                            <div class="row no-gutters">
+                                <div class="col-3 ">
+                                    <div class="chat-icon-card-2 py-5 pl-4" >
+                                        <i class="material-icons" style="font-size: 50px;color:#001b33">chat</i>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="card-body">
+                                        <div class="font-weight-bold" style="color:green">Open</div>
+                                        <div class="font-weight-bolder" style="color:#001b33;font-size:14px ;">CHAT WITH US</div>
+                                        <p class="text-muted" style="font-size:13px;">Our customer care usually answers you within a minute.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="second-page">
+                        <div class="third-card card m-3 shadow" id="third-card">
+                            <div class="row align-self-center ">
+                                <div class="col-3">
+                                    <div class="py-5 pl-4">
+                                            <i class="fas fa-calendar-alt" style="font-size: 50px;color:#001b33"></i>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="card-body">
+                                    <div class="font-weight-bolder" style="color:#001b33;font-size:14px ;">
+                                        BOOK AN APPOINTMENT,  <br>SELECT A SLOT
+                                    </div >
+                                    <p class="text-muted" style="font-size:13px;">Select a slot that suits you or have a store calling you.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="fourth-card card m-3 shadow" id="fourth-card">
+                            <div class="row ">
+                                <div class="col-3 ">
+                                    <div class="chat-icon-card-2 py-5 pl-4" >
+                                        <i class="fas fa-address-card" style="font-size: 50px;color:#001b33"></i>
+                                    </div>
+                                </div>
+                                <div class="col-9">
+                                    <div class="card-body">
+                                        <div class="font-weight-bolder" style="color:#001b33;font-size:14px ;">LEAVE YOUR NUMBER & WE WILL CALL YOU</div>
+                                        <p class="text-muted" style="font-size:13px;">Have us call you to find a slot at your local store.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chat-page">
+                        <div class="text-center">
+                            <div class="m-2 h6">
+                                    Chat page
+                            </div>
+                        </div>
+                    </div>
+                    <div id="subscriber-page">
+                        <div class="container">
+                            <div class="my-4">
+                                <form >
+                                    <div class="alert alert-danger" role="alert" id="form-error-alert" style="display: none;">
+                                    </div>
+                                    <div class="alert alert-success" role="alert" id="form-success-alert" style="display: none;">
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Select Your Store</label>
+                                        <select class="form-control" id="store-value">
+                                            <option value="store1">Store 1</option>
+                                            <option value="store2">Store 2</option>
+                                            <option value="store3">Store 3</option>
+                                            <option value="store4">Store 4</option>
+                                        </select required>
+                                    </div>
+                                    <div class="form-group">
+                                            <label >Your Email </label>
+                                            <input type="email" class="form-control"  placeholder="example@domain.com" value='' name="email" required id="email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label >Your phone number</label>
+                                        <input type="number" maxlength="10" class="form-control"  placeholder="9123456789" value='' name="phone_no" required id="phone">
+                                    </div>
+                                    <div class="mt-5">
+                                        <input type="submit" class="btn w-100 bg-dark text-light" value="CALL ME" id="call-me-btn"></input>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-light text-dark text-center bottom-name">
+                    <div class="h-10 align-self-center">
+                        <span style="min-height:1px !important;height: 1px !important;">_</span>
+                    </div>
+                 </div>
+    </div>
+    </div>
+    <script>
+        let chatBtn=document.getElementById('chat-btn');
+        let closeBtn=document.getElementById('close-btn');
+        let chatWidget=document.getElementById('chat-widget');
+        chatWidget.style.display='none';
+        let firstPage=document.getElementById('first-page');
+        let secondPage=document.getElementById('second-page');
+        let chatPage=document.getElementById('chat-page');
+        let subscriberPage=document.getElementById('subscriber-page');
+        let chatBtn2=document.getElementById('chat-icon-2');
+        
+        let headText=document.getElementById('head-text');
+        let headCaption=document.getElementById('head-caption')
+        
+        let firstCard=document.getElementById('first-card');
+        let secondCard=document.getElementById('second-card');
+        let thirdCard=document.getElementById('third-card');
+        let fourthCard=document.getElementById('fourth-card');
+        
+        let callMeBtn=document.getElementById('call-me-btn');
+
+
+        // to open widget
+        chatBtn.addEventListener('click',function (){
+            chatBtn.style.display='none'
+            chatWidget.style.display="table";
+
+        })
+        
+        // to close widget
+        closeBtn.addEventListener('click',function (){
+            chatWidget.style.display="none";
+            chatBtn.style.display='table'
+        });
+
+        //onclicking first card
+        firstCard.addEventListener('click',function (){
+            headText.innerHTML="Book a free design appointment";
+            headCaption.innerHTML="create your dream kitchen with us."
+            firstPage.style.display='none';
+            secondPage.style.display='block';
+            chatBtn2.innerHTML='<i class="fas fa-arrow-left"></i>';
+            chatBtn2.addEventListener('click',function(){
+                headText.innerHTML="How can we help?"
+                headCaption.innerHTML="We help you with questions."
+                chatBtn2.innerHTML='<i class="material-icons" style="font-size:40px">chat</i>';
+                secondPage.style.display='none';   
+                firstPage.style.display='block';
+            });
+        });
+
+        //on clicking second card
+        secondCard.addEventListener('click',function (){
+            chatBtn2.innerHTML='<i class="fas fa-arrow-left"></i>';
+            headText.innerHTML="Chat with us";
+            headCaption.innerHTML="Have us call you to find a slot."
+            firstPage.style.display='none';
+            chatPage.style.display='block';
+            chatBtn2.addEventListener('click',function(){
+                headText.innerHTML="How can we help?"
+                headCaption.innerHTML="We help you with questions."
+                chatBtn2.innerHTML='<i class="material-icons" style="font-size:40px">chat</i>';
+                chatPage.style.display='none';   
+                firstPage.style.display='block';
+            });
+        })
+
+        //on clicking third card (on second page)
+        thirdCard.addEventListener('click',function (){
+            console.warn("redirecting to some page");
+            // chatBtn2.innerHTML='<i class="fas fa-arrow-left"></i>';
+            // headText.innerHTML="Book a free design appointment";
+            // headCaption.innerHTML="create your dream kitchen with us."
+            // firstPage.style.display='none';
+            // chatPage.style.display='block';
+            // chatBtn2.addEventListener('click',function(){
+            //     chatBtn2.innerHTML='<i class="far fa-comment-dots"></i>';
+            //     chatPage.style.display='none';   
+            //     firstPage.style.display='block';
+            // });
+        })
+
+        //on clicking fourth card (on second page)
+        fourthCard.addEventListener('click',function (){
+            chatBtn2.innerHTML='<i class="fas fa-arrow-left"></i>';
+            headText.innerHTML="Leave your number";
+            headCaption.innerHTML="Our customer care helps you."
+            secondPage.style.display='none';
+            subscriberPage.style.display='block';
+            
+            chatBtn2.addEventListener('click',function(){
+                headText.innerHTML="Book a free design appointment";
+                headCaption.innerHTML="create your dream kitchen with us."
+                chatBtn2.innerHTML='<i class="fas fa-arrow-left"></i>';
+                subscriberPage.style.display='none';   
+                firstPage.style.display='none';
+                secondPage.style.display='block';
+                
+                chatBtn2.addEventListener('click',function(){
+                    headText.innerHTML="How can we help?"
+                    headCaption.innerHTML="We help you with questions."
+                    chatBtn2.innerHTML='<i class="material-icons" style="font-size:40px">chat</i>';  
+                    firstPage.style.display='block';
+                    secondPage.style.display='none';
+                });
+            });
+        });
+
+        // on submitting user detail
+        callMeBtn.addEventListener('click',function (event){
+            let formSweetAlert=document.getElementById('form-success-alert');
+            let formAlert=document.getElementById('form-error-alert');
+            formSweetAlert.style.display='none';
+            formAlert.style.display='none';
+            event.preventDefault();
+             if(!(/^\S+@\S+$/.test(email.value))){
+                formAlert.innerHTML='Invalid Email!!!'
+                formAlert.style.display='block';
+                console.warn('Invalid Email Id');
+            }else if(phone.value.length < 10){
+                formAlert.innerHTML='Enter valid mobile no!!'
+                formAlert.style.display='block';
+                console.warn("Enter valid mobile no");
+            }else{
+                let store=document.getElementById('store-value');
+                let email=document.getElementById('email');
+                let phone=document.getElementById('phone');
+                console.log(store.value,email.value,phone.value);
+                createTicket(store.value,email.value,phone.value,"sampledomain");
+            }
+        })
+
+        setTimeout(()=>{
+            console.log(document.querySelectorAll('[data-ember-action-9]'));
+        },5000);
+
+        function createTicket(storeValue,email,phone,domain){
+            let formSweetAlert=document.getElementById('form-success-alert');
+            var xhttp = new XMLHttpRequest();
+            let requestBody=JSON.stringify({
+                email:email,
+                phone:phone,
+                subject:'New Customer',
+                description:".",
+                status:2,
+                priority:4,
+                type:'Feature Request'
+            });
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    console.log(this.responseText);
+                    // formSweetAlert.innerHTML="Your requset submitted successfully!!"
+                }else{
+                    formSweetAlert.innerHTML="Your request submitted successfully!!";
+                    formSweetAlert.style.display="block";
+                    console.log(this.responseText)
+                }
+            };
+            xhttp.open("POST", "https://"+domain+".freshdesk.com/api/v2/tickets", true);
+            xhttp.setRequestHeader('Content-Type', 'application/json');
+            xhttp.setRequestHeader('Authorization','FRESDESK_API_KEY')
+            xhttp.send(requestBody);
+        }
+    </script>
+</body>
+</html>
+
+
+<!-- <i class="fas fa-calendar-alt"></i> -->
